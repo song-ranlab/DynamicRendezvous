@@ -1,0 +1,2 @@
+nu(t+1) = Minv*tau - Minv*(C+D)*nu + Minv*G + W;
+eta(t+1) =J*nu;

@@ -1,0 +1,30 @@
+clc; close all; clear all;
+
+% results = importdata('results/result2_n5.mat');
+results = importdata('results/result2_n10.mat');
+
+
+ii = find(~results.t);
+last_index = ii(2)-1;
+
+figure(1)
+hold on
+xlabel('x/m')
+ylabel('t/s')
+zlabel('z/m')
+xlim([-2, 0])
+zlim([-1.2, 1.2])
+plot3(results.wec(1,1:last_index), results.t(1,1:last_index), results.wec(3,1:last_index), ':', 'LineWidth', 2)
+plot3(results.x(1,1:last_index), results.t(1,1:last_index), results.x(3,1:last_index),...
+    'LineWidth', 2, 'Color', 'r')
+plot3(results.x(1,1:last_index), 0*ones(size(results.t(1,1:last_index))), results.x(3,1:last_index),...
+    '-.', 'LineWidth', 1, 'Color', 'r')
+plot3(results.wec(1,last_index), results.t(1,last_index), results.wec(3,last_index), 'b.', 'markersize', 20)
+grid on
+set(gca, 'XDir','reverse')
+set(gca, 'ZDir','reverse')
+set(gca, 'fontsize', 16)
+view(145,20)
+lgd = legend('WEC trajectory', 'AUV trajectory', 'AUV phase portait');
+lgd.Location = 'northwest';
+hold off
